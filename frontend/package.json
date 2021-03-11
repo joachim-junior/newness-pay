@@ -1,54 +1,26 @@
 {
-  "name": "react-material-dashboard",
-  "author": "DeviasIO",
-  "licence": "MIT",
+  "name": "payments_app",
   "version": "1.0.0",
-  "private": false,
+  "description": "Payments merchant application",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "stop": "react-scripts stop"
+    "dev": "rm -rf ./development && rm -rf ./.cache && parcel public/index.html --out-dir development -p 3000",
+    "build": "parcel build public/index.html --out-dir dist --public-url ./"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-transform-runtime": "^7.13.9",
+    "@babel/runtime-corejs2": "^7.13.9",
+    "flow-bin": "^0.146.0",
+    "flow-typed": "^2.6.2",
+    "flow-watch": "^2.0.0",
+    "parcel-bundler": "^1.12.3",
+    "sass": "^1.32.8",
+    "semver": "^6.3.0"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.56",
-    "@material-ui/styles": "^4.10.0",
-    "chart.js": "^2.9.3",
-    "clsx": "^1.1.1",
-    "formik": "^2.1.5",
-    "history": "^5.0.0",
-    "lodash": "^4.17.19",
-    "moment": "^2.27.0",
-    "nprogress": "^0.2.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-chartjs-2": "^2.10.0",
-    "react-dom": "^16.13.1",
-    "react-feather": "^2.0.8",
-    "react-helmet": "^6.1.0",
-    "react-perfect-scrollbar": "^1.5.8",
-    "react-router": "^6.0.0-beta.0",
-    "react-router-dom": "^6.0.0-beta.0",
-    "react-scripts": "^4.0.1",
-    "uuid": "^8.3.0",
-    "yup": "^0.29.3"
-  },
-  "devDependencies": {
-    "prettier": "^1.19.1"
+    "app": "^0.1.0"
   }
 }

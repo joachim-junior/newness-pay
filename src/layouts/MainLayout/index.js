@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MainLayout = () => {
+const MainLayout = () => { 
   const classes = useStyles();
 
   return (

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box, Container, makeStyles } from '@material-ui/core';
+import { Container, makeStyles } from '@material-ui/core';
 import Page from 'src/components/Page';
-import Password from './Password';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,18 +11,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SettingsView = () => {
+const TransactionsListView = () => {
   const classes = useStyles();
-
   return (
-    <Page className={classes.root} title="Settings">
-      <Container maxWidth="lg">
-        <Box mt={3}>
-          <Password />
-        </Box>
-      </Container>
+    <Page className={classes.root} title="Customers">
+      <Container maxWidth={false}></Container>
     </Page>
   );
 };
 
-export default SettingsView;
+export default TransactionsListView;

@@ -1,35 +1,34 @@
 import React, { useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-  Avatar,
   Box,
-  Button,
-  Divider,
+  // Button,
   Drawer,
   Hidden,
   List,
-  Typography,
-  makeStyles
+  makeStyles,
+  Typography
 } from '@material-ui/core';
 import {
-  AlertCircle as AlertCircleIcon,
   BarChart as BarChartIcon,
-  Lock as LockIcon,
+  Book as DocumentationIcon,
+  TrendingUp as TransactionsIcon,
   Settings as SettingsIcon,
-  ShoppingBag as ShoppingBagIcon,
+  DollarSign as BillingIcon,
   User as UserIcon,
-  UserPlus as UserPlusIcon,
-  Users as UsersIcon
+  Users as UsersIcon,
+  Activity as ServiceIcon,
+  CheckCircle as ComplianceIcon,
+  PlusSquare as PlusSquareIcon,
+  ChevronDown as DownIcon
 } from 'react-feather';
 import NavItem from './NavItem';
 
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
+  avatar: 'static/images/not_found.png',
   jobTitle: 'Senior Developer',
-  name: 'Katarina Smith'
+  name: 'Joachim Junior'
 };
-
 const items = [
   {
     href: '/app/dashboard',
@@ -37,19 +36,34 @@ const items = [
     title: 'Dashboard'
   },
   {
-    href: '/app/customers',
-    icon: UsersIcon,
-    title: 'Customers'
+    href: '/app/activate',
+    icon: ComplianceIcon,
+    title: 'Activate Your Account'
   },
   {
-    href: '/app/products',
-    icon: ShoppingBagIcon,
-    title: 'Products'
+    href: '/app/services',
+    icon: ServiceIcon,
+    title: 'Services'
+  },
+  {
+    href: '/app/transactions',
+    icon: TransactionsIcon,
+    title: 'Transactions'
   },
   {
     href: '/app/account',
     icon: UserIcon,
-    title: 'Account'
+    title: 'Profile'
+  },
+  {
+    href: '/app/account',
+    icon: UsersIcon,
+    title: 'Users'
+  },
+  {
+    href: '/app/balances',
+    icon: BillingIcon,
+    title: 'Balances'
   },
   {
     href: '/app/settings',
@@ -57,19 +71,9 @@ const items = [
     title: 'Settings'
   },
   {
-    href: '/login',
-    icon: LockIcon,
-    title: 'Login'
-  },
-  {
-    href: '/register',
-    icon: UserPlusIcon,
-    title: 'Register'
-  },
-  {
-    href: '/404',
-    icon: AlertCircleIcon,
-    title: 'Error'
+    href: '/app/documentation',
+    icon: DocumentationIcon,
+    title: 'Documentation'
   }
 ];
 
@@ -80,62 +84,47 @@ const useStyles = makeStyles(() => ({
   desktopDrawer: {
     width: 256,
     top: 64,
-    height: 'calc(100% - 64px)'
+    height: 'calc(100% - 64px)',
+    borderRight: '1px solid #eaebec',
+    backgroundColor: '#fdfdff',
+    marginTop: -80
   },
   avatar: {
     cursor: 'pointer',
-    width: 64,
-    height: 64
+    width: 40,
+    height: 40
+  },
+  name: {
+    fontSize: 18
   }
 }));
 
 const NavBar = ({ onMobileClose, openMobile }) => {
   const classes = useStyles();
-  const location = useLocation();
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
       onMobileClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   const content = (
-    <Box
-      height="100%"
-      display="flex"
-      flexDirection="column"
-    >
-      <Box
-        alignItems="center"
-        display="flex"
-        flexDirection="column"
-        p={2}
-      >
-        <Avatar
-          className={classes.avatar}
-          component={RouterLink}
-          src={user.avatar}
-          to="/app/account"
-        />
-        <Typography
-          className={classes.name}
-          color="textPrimary"
-          variant="h5"
-        >
-          {user.name}
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="body2"
-        >
-          {user.jobTitle}
-        </Typography>
-      </Box>
-      <Divider />
+    <Box height="100%" display="flex" flexDirection="column">
       <Box p={2}>
+        <Box
+          className={classes.usernameBox}
+          display="flex"
+          flexDirection="row"
+          p={2}
+        >
+          <PlusSquareIcon size="28" color="#fff" fill="rgb(0 62 236)" />
+          <Typography className={classes.name} color="textPrimary" variant="h6">
+            {user.name}
+          </Typography>
+          <DownIcon size="28" color="#9d9ca0" />
+        </Box>
         <List>
-          {items.map((item) => (
+          {items.map(item => (
             <NavItem
               href={item.href}
               key={item.title}
@@ -146,39 +135,6 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         </List>
       </Box>
       <Box flexGrow={1} />
-      <Box
-        p={2}
-        m={2}
-        bgcolor="background.dark"
-      >
-        <Typography
-          align="center"
-          gutterBottom
-          variant="h4"
-        >
-          Need more?
-        </Typography>
-        <Typography
-          align="center"
-          variant="body2"
-        >
-          Upgrade to PRO version and access 20 more screens
-        </Typography>
-        <Box
-          display="flex"
-          justifyContent="center"
-          mt={2}
-        >
-          <Button
-            color="primary"
-            component="a"
-            href="https://react-material-kit.devias.io"
-            variant="contained"
-          >
-            See PRO version
-          </Button>
-        </Box>
-      </Box>
     </Box>
   );
 

@@ -1,68 +1,109 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
 import {
   AppBar,
   Badge,
   Box,
   Hidden,
   IconButton,
-  Toolbar,
-  makeStyles
+  Toolbar
 } from '@material-ui/core';
+import {
+  HelpCircle as HelpIcon,
+  Bell as NotificationIcon,
+  User as UserIcon
+} from 'react-feather';
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import InputIcon from '@material-ui/icons/Input';
-import Logo from 'src/components/Logo';
 
-const useStyles = makeStyles(() => ({
-  root: {},
-  avatar: {
-    width: 60,
-    height: 60
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: '#fff',
+    borderBottom: 'solid 1px rgba(0,0,0,.05)'
+  },
+  search: {
+    position: 'relative',
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25)
+    },
+    marginRight: theme.spacing(90),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto'
+    }
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#9e9fa5'
+  },
+  inputRoot: {
+    color: '#4d4d4e'
+  },
+  inputInput: {
+    // padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch'
+    }
   }
 }));
 
-const TopBar = ({
-  className,
-  onMobileNavOpen,
-  ...rest
-}) => {
+const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
   const classes = useStyles();
   const [notifications] = useState([]);
 
   return (
-    <AppBar
-      className={clsx(classes.root, className)}
-      elevation={0}
-      {...rest}
-    >
+    <AppBar className={clsx(classes.root, className)} elevation={0} {...rest}>
       <Toolbar>
-        <RouterLink to="/">
-          <Logo />
-        </RouterLink>
         <Box flexGrow={1} />
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon color="#9e9fa5" />
+          </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </div>
         <Hidden mdDown>
-          <IconButton color="inherit">
+          <IconButton color="#9e9fa5">
             <Badge
               badgeContent={notifications.length}
               color="primary"
               variant="dot"
             >
-              <NotificationsIcon />
+              <NotificationIcon size="20" fill="#9e9fa5" color="#9e9fa5" />
             </Badge>
           </IconButton>
-          <IconButton color="inherit">
-            <InputIcon />
+          <IconButton>
+            <HelpIcon size="24" fill="#9e9fa5" color="#fff" />
+          </IconButton>
+          <IconButton>
+            <UserIcon size="20" fill="#9e9fa5" color="#9e9fa5" />
           </IconButton>
         </Hidden>
         <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            onClick={onMobileNavOpen}
-          >
-            <MenuIcon />
+          <IconButton onClick={onMobileNavOpen}>
+            <MenuIcon size="20" fill="#9e9fa5" color="#9e9fa5" />
           </IconButton>
         </Hidden>
       </Toolbar>

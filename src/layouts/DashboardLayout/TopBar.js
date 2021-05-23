@@ -12,7 +12,9 @@ import Divider from '@material-ui/core/Divider';
 import {
   UserCheck as ProfileIcon,
   Settings as SettingsIcon,
-  LogOut as LogoutIcon
+  LogOut as LogoutIcon,
+  ExternalLink as DocumentationIcon,
+  PhoneOutgoing as SupportIcon
 } from 'react-feather';
 
 import {
@@ -73,14 +75,23 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
   const classes = useStyles();
   const [notifications] = useState([]);
 
+  const [help, setHelp] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleHelpClick = event => {
+    setHelp(event.currentTarget);
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleHelpClose = () => {
+    setHelp(null);
   };
 
   return (
@@ -115,8 +126,35 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
             </Badge>
           </IconButton>
           <IconButton>
-            <HelpIcon size="24" fill="#9e9fa5" color="#fff" />
+            <HelpIcon
+              size="24"
+              fill="#9e9fa5"
+              color="#fff"
+              onClick={handleHelpClick}
+            />
           </IconButton>
+          <Menu
+            id="simple-menu"
+            anchorEl={help}
+            keepMounted
+            open={Boolean(help)}
+            onClose={handleHelpClose}
+          >
+            <MenuItem>
+              <NavItem
+                href="/app/Support"
+                title="Need Support ?"
+                icon={SupportIcon}
+              />
+            </MenuItem>
+            <MenuItem>
+              <NavItem
+                href="/app/documentation"
+                title="Documentation"
+                icon={DocumentationIcon}
+              />
+            </MenuItem>
+          </Menu>
           <IconButton onClick={handleClick}>
             <UserIcon size="20" fill="#9e9fa5" color="#9e9fa5" />
           </IconButton>

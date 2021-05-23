@@ -12,70 +12,23 @@ import {
 import {
   BarChart as BarChartIcon,
   Book as DocumentationIcon,
-  TrendingUp as TransactionsIcon,
   Settings as SettingsIcon,
-  DollarSign as BillingIcon,
-  User as UserIcon,
-  Users as UsersIcon,
+  Repeat as BillingIcon,
   Activity as ServiceIcon,
   CheckCircle as ComplianceIcon,
   PlusSquare as PlusSquareIcon,
-  ChevronDown as DownIcon
+  ChevronDown as DownIcon,
+  CreditCard as PaymentIcon,
+  Package as ProductsIcon
 } from 'react-feather';
 import NavItem from './NavItem';
+import ListItem from '@material-ui/core/ListItem';
 
 const user = {
   avatar: 'static/images/not_found.png',
   jobTitle: 'Senior Developer',
   name: 'Joachim Junior'
 };
-const items = [
-  {
-    href: '/app/dashboard',
-    icon: BarChartIcon,
-    title: 'Dashboard'
-  },
-  {
-    href: '/app/activate',
-    icon: ComplianceIcon,
-    title: 'Activate Your Account'
-  },
-  {
-    href: '/app/services',
-    icon: ServiceIcon,
-    title: 'Services'
-  },
-  {
-    href: '/app/transactions',
-    icon: TransactionsIcon,
-    title: 'Transactions'
-  },
-  {
-    href: '/app/account',
-    icon: UserIcon,
-    title: 'Profile'
-  },
-  {
-    href: '/app/account',
-    icon: UsersIcon,
-    title: 'Users'
-  },
-  {
-    href: '/app/balances',
-    icon: BillingIcon,
-    title: 'Balances'
-  },
-  {
-    href: '/app/settings',
-    icon: SettingsIcon,
-    title: 'Settings'
-  },
-  {
-    href: '/app/documentation',
-    icon: DocumentationIcon,
-    title: 'Documentation'
-  }
-];
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {
@@ -96,6 +49,19 @@ const useStyles = makeStyles(() => ({
   },
   name: {
     fontSize: 18
+  },
+  itemlist: {
+    marginBottom: '-15px !important',
+    marginLeft: '5px'
+  },
+  itemlistfirst: {
+    marginBottom: '-15px !important',
+    marginLeft: '5px',
+    marginTop: '-10px'
+  },
+  itemlistlast: {
+    marginLeft: '5px',
+    marginBottom: '0px !important'
   }
 }));
 
@@ -124,14 +90,54 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           <DownIcon size="28" color="#9d9ca0" />
         </Box>
         <List>
-          {items.map(item => (
+          <NavItem
+            href="/app/dashboard"
+            title="Dashboard"
+            icon={BarChartIcon}
+          />
+          <NavItem
+            href="/app/activate"
+            title="Activate Your Account"
+            icon={ComplianceIcon}
+          />
+          <NavItem href="/app/services" title="Services" icon={ServiceIcon} />
+          <NavItem href="/app/payments" title="Payments" icon={PaymentIcon} />
+          <ListItem className={classes.itemlist}>
             <NavItem
-              href={item.href}
-              key={item.title}
-              title={item.title}
-              icon={item.icon}
+              className={classes.itemlistfirst}
+              href="/app/transactions"
+              title="Transactions"
             />
-          ))}
+          </ListItem>
+          <ListItem className={classes.itemlist}>
+            <NavItem
+              className={classes.itemlist}
+              href="/app/payouts"
+              title="Payouts"
+            />
+          </ListItem>
+          <ListItem className={classes.itemlist}>
+            <NavItem
+              className={classes.itemlist}
+              href="/app/customers"
+              title="Customers"
+            />
+          </ListItem>
+          <ListItem className={classes.itemlist}>
+            <NavItem
+              className={classes.itemlistlast}
+              href="/app/disputes"
+              title="Disputes"
+            />
+          </ListItem>
+          <NavItem href="/app/balances" title="Balances" icon={BillingIcon} />
+          <NavItem href="/app/products" title="Products" icon={ProductsIcon} />
+          <NavItem href="/app/settings" title="Settings" icon={SettingsIcon} />
+          <NavItem
+            href="/app/documentation"
+            title="Documentation"
+            icon={DocumentationIcon}
+          />
         </List>
       </Box>
       <Box flexGrow={1} />

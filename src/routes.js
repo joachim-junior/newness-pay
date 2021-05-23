@@ -10,8 +10,13 @@ import NotFoundView from 'src/views/errors/NotFoundView';
 import ServiceListView from 'src/views/service/ServiceListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
+import PaymentsView from 'src/views/payments /PaymentsView';
+import PayoutsView from 'src/views/payouts/PayoutsView';
+import ProductsView from 'src/views/products/ProductsView';
+import CustomersView from 'src/views/customers/CustomersView';
+import DisputesView from 'src/views/disputes/DisputesView';
 import ActivateView from 'src/views/Activate/ ActivateView';
-import { BalancesListView } from './views/balances/ BalancesListView';
+import { BalancesListView } from 'src/views/balances/ BalancesListView';
 
 const routes = [
   {
@@ -25,7 +30,12 @@ const routes = [
       { path: 'services', element: <ServiceListView /> },
       { path: 'settings', element: <SettingsView /> },
       { path: 'documentation', element: <AccountView /> },
+      { path: 'payments', element: <PaymentsView /> },
       { path: 'Balances', element: <BalancesListView /> },
+      { path: 'payouts', element: <PayoutsView /> },
+      { path: 'disputes', element: <DisputesView /> },
+      { path: 'customers', element: <CustomersView /> },
+      { path: 'products', element: <ProductsView /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },

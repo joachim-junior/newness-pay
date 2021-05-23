@@ -3,14 +3,14 @@ import Page from 'src/components/Page';
 import NoResults from 'src/components/NoResults';
 import { Container } from '@material-ui/core';
 
-const TransactionsListView = () => {
+const ProductsView = () => {
   return (
-    <Page title="Balances">
+    <Page title="Products">
       <Container maxWidth={false}>
-        <NoResults title="Tansactions" />
+        <NoResults title="Products" />
       </Container>
     </Page>
   );
 };
 
-export default TransactionsListView;
+export default ProductsView;

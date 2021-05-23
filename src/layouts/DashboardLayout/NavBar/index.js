@@ -134,7 +134,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           <NavItem href="/app/products" title="Products" icon={ProductsIcon} />
           <NavItem href="/app/settings" title="Settings" icon={SettingsIcon} />
           <NavItem
-            href="/app/documentation"
+            href="/app/"
             title="Documentation"
             icon={DocumentationIcon}
           />

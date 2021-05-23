@@ -301,10 +301,9 @@ export default function VerticalTabs() {
         </FormControl>
         <FormControl className={classes.root} noValidate autoComplete="off">
           <Button
-            className={classes.button}
+            className={classes.buttons}
             variant="contained"
             color="primary"
-            className={classes.button}
             endIcon={<ArrowForwardIcon>send</ArrowForwardIcon>}
             {...a11yProps(1)}
             type="submit"
@@ -500,7 +499,7 @@ export default function VerticalTabs() {
           <Button
             variant="contained"
             color="primary"
-            className={classes.buttons}
+            className={classes.button}
             endIcon={<ArrowForwardIcon>send</ArrowForwardIcon>}
             {...a11yProps(1)}
             type="submit"

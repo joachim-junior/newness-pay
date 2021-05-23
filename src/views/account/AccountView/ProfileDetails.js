@@ -29,7 +29,13 @@ const states = [
 ];
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
+  introtitle: {
+    fontFamily: ['Roboto', 'sans-serif'].join(','),
+    fontSize: 22,
+    fontWeight: 600,
+    color: '#1a1f36'
+  }
 }));
 
 const ProfileDetails = ({ className, ...rest }) => {

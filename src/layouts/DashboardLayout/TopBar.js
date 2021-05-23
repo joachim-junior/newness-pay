@@ -5,6 +5,15 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import Switch from '@material-ui/core/Switch';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import NavItem from 'src/layouts/DashboardLayout/NavBar/NavItem.js';
+import Divider from '@material-ui/core/Divider';
+import {
+  UserCheck as ProfileIcon,
+  Settings as SettingsIcon,
+  LogOut as LogoutIcon
+} from 'react-feather';
 
 import {
   AppBar,
@@ -64,6 +73,16 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
   const classes = useStyles();
   const [notifications] = useState([]);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <AppBar className={clsx(classes.root, className)} elevation={0} {...rest}>
       <Toolbar>
@@ -98,9 +117,33 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
           <IconButton>
             <HelpIcon size="24" fill="#9e9fa5" color="#fff" />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={handleClick}>
             <UserIcon size="20" fill="#9e9fa5" color="#9e9fa5" />
           </IconButton>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem disabled>Joachim Junior</MenuItem>
+            <MenuItem disabled>Administrator</MenuItem>
+            <Divider />
+            <MenuItem>
+              <NavItem href="/app/account" title="Profile" icon={ProfileIcon} />
+            </MenuItem>
+            <MenuItem>
+              <NavItem
+                href="/app/settings"
+                title="Settings"
+                icon={SettingsIcon}
+              />
+            </MenuItem>
+            <MenuItem>
+              <NavItem href="/app/logout" title="Logout" icon={LogoutIcon} />
+            </MenuItem>
+          </Menu>
         </Hidden>
         <Hidden lgUp>
           <IconButton onClick={onMobileNavOpen}>

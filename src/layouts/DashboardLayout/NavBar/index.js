@@ -14,7 +14,6 @@ import {
   Book as DocumentationIcon,
   Settings as SettingsIcon,
   Repeat as BillingIcon,
-  Activity as ServiceIcon,
   CheckCircle as ComplianceIcon,
   PlusSquare as PlusSquareIcon,
   ChevronDown as DownIcon,
@@ -23,6 +22,7 @@ import {
 } from 'react-feather';
 import NavItem from './NavItem';
 import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
 
 const user = {
   avatar: 'static/images/not_found.png',
@@ -100,7 +100,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
             title="Activate Your Account"
             icon={ComplianceIcon}
           />
-          <NavItem href="/app/services" title="Services" icon={ServiceIcon} />
+          <Divider style={{ margin: '20px 70px 20px 40px' }} />
           <NavItem href="/app/payments" title="Payments" icon={PaymentIcon} />
           <ListItem className={classes.itemlist}>
             <NavItem
@@ -131,6 +131,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
             />
           </ListItem>
           <NavItem href="/app/balances" title="Balances" icon={BillingIcon} />
+          <Divider style={{ margin: '20px 70px 20px 40px' }} />
           <NavItem href="/app/products" title="Products" icon={ProductsIcon} />
           <NavItem href="/app/settings" title="Settings" icon={SettingsIcon} />
           <NavItem

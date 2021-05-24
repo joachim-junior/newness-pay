@@ -10,7 +10,7 @@ import NotFoundView from 'src/views/errors/NotFoundView';
 import ServiceListView from 'src/views/service/ServiceListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
-import PaymentsView from 'src/views/payments /PaymentsView';
+import PaymentsView from 'src/views/payments/PaymentsView';
 import PayoutsView from 'src/views/payouts/PayoutsView';
 import ProductsView from 'src/views/products/ProductsView';
 import CustomersView from 'src/views/customers/CustomersView';

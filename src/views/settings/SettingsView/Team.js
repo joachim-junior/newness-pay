@@ -10,6 +10,15 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Grid, TextField, Box } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import PropTypes from 'prop-types';
+import Divider from '@material-ui/core/Divider';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+
 import {
   PlusCircle as AddTeamIcon,
   ArrowRightCircle as RolesIcon
@@ -27,6 +36,7 @@ const useStyles = makeStyles({
     color: '#1a1f36'
   }
 });
+const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 function createData(firstname, lastname, address, role, twostep, date) {
   return { firstname, lastname, address, role, twostep, date };
@@ -51,8 +61,16 @@ const rows = [
   )
 ];
 
-export default function DenseTable() {
+export default function Team() {
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+
+  const handleClose = value => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
 
   const [values, setValues] = useState({
     firstName: 'Katarina',
@@ -62,6 +80,10 @@ export default function DenseTable() {
     state: 'Alabama',
     country: 'USA'
   });
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
   const handleChange = event => {
     setValues({
@@ -100,6 +122,7 @@ export default function DenseTable() {
                 size="small"
                 m={5}
                 style={{ marginRight: 7 }}
+                onClick={handleClickOpen}
               >
                 New member
               </Button>
@@ -112,6 +135,11 @@ export default function DenseTable() {
               >
                 Manage roles
               </Button>
+              <SimpleDialog
+                selectedValue={selectedValue}
+                open={open}
+                onClose={handleClose}
+              />
             </Box>
           </Box>
         </Grid>
@@ -147,5 +175,133 @@ export default function DenseTable() {
         </Table>
       </TableContainer>
     </Container>
+  );
+}
+
+Team.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.string.isRequired
+};
+
+function SimpleDialog(props) {
+  // const classes = useStyles();
+  const { onClose, selectedValue, open } = props;
+
+  const handleClose = () => {
+    onClose(selectedValue);
+  };
+
+  const [value, setValue] = React.useState('female');
+
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+
+  return (
+    <Dialog
+      onClose={handleClose}
+      aria-labelledby="simple-dialog-title"
+      open={open}
+    >
+      <Container>
+        <Typography>Invite new users</Typography>
+        <Typography>
+          Enter the email addresses of the users you'd like to invite, and
+          choose the role they should have.
+        </Typography>
+        <Divider style={{ margin: '20px 0px' }} />
+        <TextField
+          placeholder="sarah@fapshi.com, okorie@example.com"
+          fullWidth
+          name="state"
+          required
+          variant="outlined"
+          size="small"
+          style={{ marginBottom: 10 }}
+        ></TextField>
+        <Divider style={{ margin: '20px 0px' }} />
+        <form>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Member roles</FormLabel>
+            <Divider style={{ margin: '10px 0px' }} />
+            <RadioGroup
+              aria-label="gender"
+              name="gender1"
+              value={value}
+              onChange={handleChange}
+            >
+              <FormControlLabel
+                value="administrator"
+                control={<Radio />}
+                label="Administrator"
+              />
+              <Typography style={{ fontSize: '14px' }}>
+                Best for business owners and company administrators
+              </Typography>
+              <Divider style={{ margin: '10px 0px' }} />
+              <FormControlLabel
+                value="developer"
+                control={<Radio />}
+                label="Developer"
+              />
+              <Typography style={{ fontSize: '14px' }}>
+                Best for developers or people primarily using the Stripe API
+              </Typography>
+              <Divider style={{ margin: '10px 0px' }} />
+              <FormControlLabel
+                value="viewer"
+                control={<Radio />}
+                label="Viewer"
+              />
+              <Typography style={{ fontSize: '14px' }}>
+                Best for people who need to view Stripe data, but don't need to
+                make any updates
+              </Typography>
+              <Divider style={{ margin: '10px 0px' }} />
+              <FormControlLabel
+                value="support"
+                control={<Radio />}
+                label="Support Specialist"
+              />
+              <Typography style={{ fontSize: '14px' }}>
+                Best for employees who regularly refund payments and respond to
+                disputes
+              </Typography>
+              <Divider style={{ margin: '10px 0px' }} />
+              <FormControlLabel
+                value="payment"
+                control={<Radio />}
+                label="Payment Specialist"
+              />
+              <Typography style={{ fontSize: '14px' }}>
+                Best for people responsible for managing payement, including
+                payouts and top ups
+              </Typography>
+            </RadioGroup>
+          </FormControl>
+          <Divider style={{ margin: '10px 0px' }} />
+          <Box display="flex" justifyContent="flex-end" p={2}>
+            <Button
+              color="primary"
+              style={{ marginRight: 5 }}
+              variant="contained"
+              type="reset"
+              size="small"
+            >
+              Cancel
+            </Button>
+            <Button
+              size="small"
+              color="primary"
+              variant="contained"
+              type="submit"
+            >
+              Save details
+            </Button>
+          </Box>
+        </form>
+      </Container>
+    </Dialog>
   );
 }

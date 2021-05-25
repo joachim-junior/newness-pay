@@ -31,9 +31,13 @@ const useStyles = makeStyles({
   },
   introtitle: {
     fontFamily: ['Roboto', 'sans-serif'].join(','),
-    fontSize: 22,
-    fontWeight: 600,
+    fontSize: 20,
+    fontWeight: 500,
     color: '#1a1f36'
+  },
+  introtext: {
+    fontFamily: ['Roboto', 'sans-serif'].join(','),
+    fontSize: 16
   }
 });
 const emails = ['username@gmail.com', 'user02@gmail.com'];
@@ -185,7 +189,7 @@ Team.propTypes = {
 };
 
 function SimpleDialog(props) {
-  // const classes = useStyles();
+  const classes = useStyles();
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
@@ -205,11 +209,15 @@ function SimpleDialog(props) {
       open={open}
     >
       <Container>
-        <Typography>Invite new users</Typography>
-        <Typography>
-          Enter the email addresses of the users you'd like to invite, and
-          choose the role they should have.
-        </Typography>
+        <Box style={{ margin: 10 }}>
+          <Typography className={classes.introtitle}>
+            Invite new users
+          </Typography>
+          <Typography className={classes.introtext}>
+            Enter the email addresses of the users you'd like to invite, and
+            choose the role they should have.
+          </Typography>
+        </Box>
         <Divider style={{ margin: '20px 0px' }} />
         <TextField
           placeholder="sarah@fapshi.com, okorie@example.com"
@@ -297,7 +305,7 @@ function SimpleDialog(props) {
               variant="contained"
               type="submit"
             >
-              Save details
+              Invite
             </Button>
           </Box>
         </form>

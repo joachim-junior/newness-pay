@@ -18,7 +18,8 @@ import {
   PlusSquare as PlusSquareIcon,
   ChevronDown as DownIcon,
   CreditCard as PaymentIcon,
-  Package as ProductsIcon
+  Package as ProductsIcon,
+  Users as CustomersIcon
 } from 'react-feather';
 import NavItem from './NavItem';
 import ListItem from '@material-ui/core/ListItem';
@@ -36,10 +37,9 @@ const useStyles = makeStyles(() => ({
   },
   desktopDrawer: {
     width: 256,
-    top: 64,
-    height: 'calc(100% - 64px)',
+    top: 70,
     borderRight: '1px solid #eaebec',
-    backgroundColor: '#fdfdff',
+    backgroundColor: '#fbfbfb',
     marginTop: -80
   },
   avatar: {
@@ -48,7 +48,7 @@ const useStyles = makeStyles(() => ({
     height: 40
   },
   name: {
-    fontSize: 18
+    fontSize: 16
   },
   itemlist: {
     marginBottom: '-15px !important',
@@ -83,11 +83,11 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           flexDirection="row"
           p={2}
         >
-          <PlusSquareIcon size="28" color="#fff" fill="rgb(0 62 236)" />
+          <PlusSquareIcon size="26" color="#fff" fill="rgb(0 62 236)" />
           <Typography className={classes.name} color="textPrimary" variant="h6">
             {user.name}
           </Typography>
-          <DownIcon size="28" color="#9d9ca0" />
+          <DownIcon size="26" color="#9d9ca0" />
         </Box>
         <List>
           <NavItem
@@ -97,16 +97,23 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           />
           <NavItem
             href="/app/activate"
-            title="Activate Your Account"
+            title="Activate your account"
             icon={ComplianceIcon}
           />
-          <Divider style={{ margin: '20px 70px 20px 40px' }} />
-          <NavItem href="/app/payments" title="Payments" icon={PaymentIcon} />
+          <Divider style={{ margin: '20px 70px 10px 40px' }} />
+          <NavItem href="/app/payouts" title="Payments" icon={PaymentIcon} />
           <ListItem className={classes.itemlist}>
             <NavItem
               className={classes.itemlistfirst}
               href="/app/transactions"
               title="Transactions"
+            />
+          </ListItem>
+          <ListItem className={classes.itemlist}>
+            <NavItem
+              className={classes.itemlist}
+              href="/app/topups"
+              title="Top-ups"
             />
           </ListItem>
           <ListItem className={classes.itemlist}>
@@ -119,19 +126,24 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           <ListItem className={classes.itemlist}>
             <NavItem
               className={classes.itemlist}
-              href="/app/customers"
-              title="Customers"
+              href="/app/disputes"
+              title="Disputes"
             />
           </ListItem>
           <ListItem className={classes.itemlist}>
             <NavItem
               className={classes.itemlistlast}
-              href="/app/disputes"
-              title="Disputes"
+              href="/app/transfers"
+              title="Transfers"
             />
           </ListItem>
+          <NavItem
+            href="/app/customers"
+            title="Customers"
+            icon={CustomersIcon}
+          />
           <NavItem href="/app/balances" title="Balances" icon={BillingIcon} />
-          <Divider style={{ margin: '20px 70px 20px 40px' }} />
+          <Divider style={{ margin: '20px 70px 10px 40px' }} />
           <NavItem href="/app/products" title="Products" icon={ProductsIcon} />
           <NavItem href="/app/settings" title="Settings" icon={SettingsIcon} />
           <NavItem

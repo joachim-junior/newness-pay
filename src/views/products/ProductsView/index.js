@@ -2,10 +2,11 @@ import React from 'react';
 import Page from 'src/components/Page';
 import NoResults from 'src/components/NoResults';
 import { Container } from '@material-ui/core';
-import ProductsBar from './ProductsBar';
+import Bar from 'src/components/Bar';
 import Alerts from './Alerts';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
+import TableData from './Table';
 
 const useStyles = makeStyles({
   container: {
@@ -34,7 +35,8 @@ const ProductsView = () => {
       <Container className={classes.root}>
         <Alerts />
         <Divider style={{ margin: '20px 0px' }} />
-        <ProductsBar />
+        <Bar title="Products" button="Add product" />
+        <TableData />
         <NoResults title="Products" />
       </Container>
     </Page>

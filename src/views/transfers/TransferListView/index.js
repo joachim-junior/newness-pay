@@ -9,10 +9,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import NoResults from 'src/components/NoResults';
 import { Container } from '@material-ui/core';
-import Bar from 'src/components/Bar.js';
+import Bar from 'src/components/Bar';
 import TableData from './Table';
 
-const PaymentsView = () => {
+const TransferListView = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -23,11 +23,11 @@ const PaymentsView = () => {
     setOpen(false);
   };
   return (
-    <Page title="Payments">
+    <Page title="Balances">
       <Container maxWidth={false}>
         <Bar
-          title="Payments"
-          button="Make a payment"
+          title="Transfers"
+          button="Make a transfer"
           onClick={handleClickOpen}
         />
         <Dialog
@@ -60,10 +60,10 @@ const PaymentsView = () => {
           </DialogActions>
         </Dialog>
         <TableData />
-        <NoResults title="Payments" />
+        <NoResults title="Transfers" />
       </Container>
     </Page>
   );
 };
 
-export default PaymentsView;
+export default TransferListView;

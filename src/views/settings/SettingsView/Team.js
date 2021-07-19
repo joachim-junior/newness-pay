@@ -156,9 +156,9 @@ export default function Team() {
         >
           <TableHead>
             <TableRow>
-              <TableCell>name</TableCell>
-              <TableCell align="right">Email</TableCell>
-              <TableCell align="right">Role</TableCell>
+              <TableCell align="center">Name</TableCell>
+              <TableCell align="center">Email</TableCell>
+              <TableCell align="center">Role</TableCell>
               <TableCell align="right">Two step</TableCell>
               <TableCell align="right">Date Registered</TableCell>
             </TableRow>
